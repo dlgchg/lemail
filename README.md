@@ -1,6 +1,8 @@
 # EmailTE-Go
 EmailTE-Go仿 Linux shell 命令的邮箱命令行客户端.
 
+[TOC]
+
 ## 命令列表及说明
 
 ### 新增邮箱
