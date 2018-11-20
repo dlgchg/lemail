@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"github.com/satori/go.uuid"
 	"github.com/urfave/cli"
-	"my-golang-project/EmailTE-Go/db"
-	"os"
-	"time"
 	"io/ioutil"
-	"strings"
+	"my-golang-project/EmailTE-Go/db"
 	"my-golang-project/EmailTE-Go/email"
 	"my-golang-project/EmailTE-Go/util"
+	"os"
 	"strconv"
+	"strings"
+	"time"
 )
 
 var toEmail, ccEmail, bccEmail []string
@@ -402,9 +402,9 @@ func main() {
 			Description: `
 示例:
 	One:
-		EmailTE-Go send-attach -to=xxxxx@xx.com -title=xxxx -body=xxxxxxxxg -attahc=/xx/xx/xx.png
+		EmailTE-Go send-attach -to=xxxxx@xx.com -title=xxxx -body=xxxxxxxxg -attach=/xx/xx/xx.png
 	More:
-		EmailTE-Go send-attach -to=xxxxx@xx.com,xxx@xx.com -title=xxxx -body=xxxxxxxxg -attahc=/xx/xx/xx.png`,
+		EmailTE-Go send-attach -to=xxxxx@xx.com,xxx@xx.com -title=xxxx -body=xxxxxxxxg -attach=/xx/xx/xx.png`,
 			Action: func(c *cli.Context) error {
 
 				to := c.String("to")
@@ -474,14 +474,14 @@ func main() {
 					err = db.Engine.Where("limit = 20").Desc("create_time").Find(&sendEmails)
 				}
 
-				if err != nil || len(sendEmails) == 0{
+				if err != nil || len(sendEmails) == 0 {
 					fmt.Println("没有邮件!")
 					return nil
 				}
 
 				fmt.Println("你已发送的邮件列表:")
 				fmt.Printf("%-10s %-20s %-20s %-20s %-30s \n",
-					"id", "fromEmail","create_time", "title", "content")
+					"id", "fromEmail", "create_time", "title", "content")
 				for _, sendEmail := range sendEmails {
 					fmt.Printf("%-10d %-20s %-20s %-20s %-30s \n",
 						sendEmail.Id, sendEmail.FromEmail, sendEmail.CreateTime.Format("2006-01-02 15:04:05"),
