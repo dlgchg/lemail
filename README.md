@@ -16,6 +16,7 @@ EmailTE-Go仿 Linux shell 命令的邮箱命令行客户端.
     - [查看已发送邮件](#查看已发送邮件)
     - [删除邮件](#删除邮件)
     - [后续开发](#后续开发)
+- [交流反馈](#交流反馈)
 <!-- /TOC -->
 # 命令列表及说明
 
@@ -147,3 +148,7 @@ EmailTE-Go send-remove -id= -all=true
 ## 后续开发
 1. 添加配置文件，邮箱以配置文件添加
 2. 加载收到的邮件
+
+# 交流反馈
+提交Issue: [Issues](https://github.com/UOYO/EmailTE-Go/issues)
+邮箱: curmido@gmail.com
