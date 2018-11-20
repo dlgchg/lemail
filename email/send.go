@@ -2,7 +2,7 @@ package email
 
 import (
 	"github.com/go-gomail/gomail"
-	"my-golang-project/EmailTE-Go/db"
+	"my-golang-project/lemail/db"
 )
 
 func SendEmail(toEmail []string, ccEmail []string, bccEmail []string,

@@ -5,9 +5,9 @@ import (
 	"github.com/satori/go.uuid"
 	"github.com/urfave/cli"
 	"io/ioutil"
-	"my-golang-project/EmailTE-Go/db"
-	"my-golang-project/EmailTE-Go/email"
-	"my-golang-project/EmailTE-Go/util"
+	"my-golang-project/lemail/db"
+	"my-golang-project/lemail/email"
+	"my-golang-project/lemail/util"
 	"os"
 	"strconv"
 	"strings"
@@ -21,11 +21,11 @@ func main() {
 	var load bool
 
 	app := cli.NewApp()
-	app.Name = "EmailTE-Go"
-	app.Author = "LiWei/EmailTE-Go"
+	app.Name = "lemail"
+	app.Author = "LiWei/lemail"
 	app.Copyright = fmt.Sprintf("(c) 2018-%s iikira.", time.Now().Format("2006"))
-	app.Description = "EmailTE-Go是一个命令行的邮件客户端"
-	app.Usage = "EmailTE-Go是一个命令行的邮件客户端"
+	app.Description = "lemail是一个命令行的邮件客户端"
+	app.Usage = "lemail是一个命令行的邮件客户端"
 	app.Version = "0.0.1"
 	//----------------
 	app.Flags = []cli.Flag{
@@ -48,7 +48,7 @@ func main() {
 			Name:     "add",
 			Aliases:  []string{"a"},
 			Usage:    "新增一个邮箱",
-			Category: "EmailTE-Go",
+			Category: "lemail",
 			Description: `
 -type:
 	0. qq
@@ -58,7 +58,7 @@ func main() {
 	true:  smtp
 	false: pop3
 示例: 
-	EmailTE-Go add -type=1 -sp=true -email=xxxx@qq.com -pass=xxxxxx`,
+	lemail add -type=1 -sp=true -email=xxxx@qq.com -pass=xxxxxx`,
 			Action: func(c *cli.Context) error {
 				emailType := c.Int("type")
 				sp := c.Bool("sp")
@@ -101,7 +101,7 @@ func main() {
 		{
 			Name:        "show",
 			Description: "显示已添加的邮箱信息",
-			Category:    "EmailTE-Go",
+			Category:    "lemail",
 			Usage:       "显示已添加的邮箱信息",
 			Aliases:     []string{"s"},
 			Action: func(c *cli.Context) error {
@@ -124,9 +124,9 @@ func main() {
 			Description: `
 删除一个邮箱.
 示例:
-	EmailTE-Go del -uuid=9b76ea1c-d37c-44e5-a330-cf6ecb882807
+	lemail del -uuid=9b76ea1c-d37c-44e5-a330-cf6ecb882807
 `,
-			Category: "EmailTE-Go",
+			Category: "lemail",
 			Usage:    "删除一个邮箱",
 			Aliases:  []string{"d"},
 			Action: func(c *cli.Context) error {
@@ -158,10 +158,10 @@ func main() {
 			Name:     "up",
 			Aliases:  []string{"u"},
 			Usage:    "修改邮箱信息.",
-			Category: "EmailTE-Go",
+			Category: "lemail",
 			Description: `
 示例: 
-	EmailTE-Go up -uuid=xxxxxxx -email=xxxx@qq.com -pass=xxxxxx`,
+	lemail up -uuid=xxxxxxx -email=xxxx@qq.com -pass=xxxxxx`,
 			Action: func(c *cli.Context) error {
 				var email, pass, uuId string
 				uuId = c.String("uuid")
@@ -199,9 +199,9 @@ func main() {
 			Description: `
 使用邮箱来进行邮件发送.
 示例:
-	EmailTE-Go use -uuid=9b76ea1c-d37c-44e5-a330-cf6ecb882807
+	lemail use -uuid=9b76ea1c-d37c-44e5-a330-cf6ecb882807
 `,
-			Category: "EmailTE-Go",
+			Category: "lemail",
 			Usage:    "使用邮箱来进行邮件发送",
 			Aliases:  []string{"use"},
 			Action: func(c *cli.Context) error {
@@ -246,8 +246,8 @@ func main() {
 			Description: `
 查询正在使用的邮箱.
 示例:
-	EmailTE-Go using`,
-			Category: "EmailTE-Go",
+	lemail using`,
+			Category: "lemail",
 			Usage:    "查询正在使用的邮箱.",
 			Aliases:  []string{"using"},
 			Action: func(c *cli.Context) error {
@@ -269,18 +269,18 @@ func main() {
 		{
 			Name:     "send",
 			Aliases:  []string{"s"},
-			Category: "EmailTE-Go",
+			Category: "lemail",
 			Usage:    "发送一封带抄送，暗送，附件，多人的邮件",
 			Description: `
 示例：
 简单发送:
-	EmailTE-Go send -to=xxxxx@xx.com -title=xxxx -body=xxxxxxxx
+	lemail send -to=xxxxx@xx.com -title=xxxx -body=xxxxxxxx
 发送多人:
-	EmailTE-Go send -to=xxxxx@xx.com,xxxxx@xx.com -title=xxxx -body=xxxxxxxx
+	lemail send -to=xxxxx@xx.com,xxxxx@xx.com -title=xxxx -body=xxxxxxxx
 添加附件:
-	EmailTE-Go send -to=xxxxx@xx.com -title=xxxx -body=xxxxxxxx -attach=x/x/xxx.jpg
+	lemail send -to=xxxxx@xx.com -title=xxxx -body=xxxxxxxx -attach=x/x/xxx.jpg
 添加抄送和暗送:
-	EmailTE-Go send -to=xxxxx@xx.com -cc=xxxxx@xxx.com -bcc=xxxxxx@xx.com -title=xxxx -body=xxxxxxxx -attach=x/x/xxx.jpg`,
+	lemail send -to=xxxxx@xx.com -cc=xxxxx@xxx.com -bcc=xxxxxx@xx.com -title=xxxx -body=xxxxxxxx -attach=x/x/xxx.jpg`,
 			Action: func(c *cli.Context) error {
 				to := c.String("to")
 				cc := c.String("cc")
@@ -347,14 +347,14 @@ func main() {
 		{
 			Name:     "send-simple",
 			Aliases:  []string{"ss"},
-			Category: "EmailTE-Go",
+			Category: "lemail",
 			Usage:    "发送一封简单的邮件,可发送多人",
 			Description: `
 示例:
 	One:
-		EmailTE-Go send-simple -to=xxxxx@xx.com -title=xxxx -body=xxxxxxxxg
+		lemail send-simple -to=xxxxx@xx.com -title=xxxx -body=xxxxxxxxg
 	More:
-		EmailTE-Go send-simple -to=xxxxx@xx.com,xxx@xx.com -title=xxxx -body=xxxxxxxxg`,
+		lemail send-simple -to=xxxxx@xx.com,xxx@xx.com -title=xxxx -body=xxxxxxxxg`,
 			Action: func(c *cli.Context) error {
 
 				to := c.String("to")
@@ -397,14 +397,14 @@ func main() {
 		{
 			Name:     "send-attach",
 			Aliases:  []string{"sa"},
-			Category: "EmailTE-Go",
+			Category: "lemail",
 			Usage:    "发送一封带附件的邮件,可发送多人",
 			Description: `
 示例:
 	One:
-		EmailTE-Go send-attach -to=xxxxx@xx.com -title=xxxx -body=xxxxxxxxg -attach=/xx/xx/xx.png
+		lemail send-attach -to=xxxxx@xx.com -title=xxxx -body=xxxxxxxxg -attach=/xx/xx/xx.png
 	More:
-		EmailTE-Go send-attach -to=xxxxx@xx.com,xxx@xx.com -title=xxxx -body=xxxxxxxxg -attach=/xx/xx/xx.png`,
+		lemail send-attach -to=xxxxx@xx.com,xxx@xx.com -title=xxxx -body=xxxxxxxxg -attach=/xx/xx/xx.png`,
 			Action: func(c *cli.Context) error {
 
 				to := c.String("to")
@@ -457,12 +457,12 @@ func main() {
 		{
 			Name:     "send-list",
 			Aliases:  []string{"sl"},
-			Category: "EmailTE-Go",
+			Category: "lemail",
 			Usage:    "查看已发送的邮件,默认查看前20条",
 			Description: `
 示例:
 	One:
-		EmailTE-Go send-list -all=true`,
+		lemail send-list -all=true`,
 			Action: func(c *cli.Context) error {
 				var sendEmails []db.SendEmail
 				var err error
@@ -499,14 +499,14 @@ func main() {
 		{
 			Name:     "send-remove",
 			Aliases:  []string{"sr"},
-			Category: "EmailTE-Go",
+			Category: "lemail",
 			Usage:    "删除已发出的邮件",
 			Description: `
 示例:
 	One:
-		EmailTE-Go send-remove -id=1 -all=false
+		lemail send-remove -id=1 -all=false
 	All:
-		EmailTE-Go send-remove -id= -all=true`,
+		lemail send-remove -id= -all=true`,
 			Action: func(c *cli.Context) error {
 				var sendEmail db.SendEmail
 				all := c.Bool("all")
