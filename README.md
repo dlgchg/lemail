@@ -1,11 +1,25 @@
 # EmailTE-Go
 EmailTE-Go仿 Linux shell 命令的邮箱命令行客户端.
 
-<!-- TOC -->autoauto- [EmailTE-Go](#emailte-go)auto    - [命令列表及说明](#命令列表及说明)auto        - [新增邮箱](#新增邮箱)auto        - [邮箱列表](#邮箱列表)auto        - [删除邮箱](#删除邮箱)auto        - [修改邮箱信息](#修改邮箱信息)auto        - [使用邮箱](#使用邮箱)auto        - [查看正在使用的邮箱](#查看正在使用的邮箱)auto        - [发送邮件](#发送邮件)auto            - [发送一封简单的邮件](#发送一封简单的邮件)auto            - [发送带附件的邮件](#发送带附件的邮件)auto        - [发送完整的邮件](#发送完整的邮件)auto        - [查看已发送邮件](#查看已发送邮件)auto        - [删除邮件](#删除邮件)auto    - [后续开发](#后续开发)autoauto<!-- /TOC -->
+<!-- TOC -->
+- [命令列表及说明](#命令列表及说明)
+    - [新增邮箱](#新增邮箱)
+    - [邮箱列表](#邮箱列表)
+    - [删除邮箱](#删除邮箱)
+    - [修改邮箱信息](#修改邮箱信息)
+    - [使用邮箱](#使用邮箱)
+    - [查看正在使用的邮箱](#查看正在使用的邮箱)
+    - [发送邮件](#发送邮件)
+        - [发送一封简单的邮件](#发送一封简单的邮件)
+        - [发送带附件的邮件](#发送带附件的邮件)
+        - [发送完整的邮件](#发送完整的邮件)
+    - [查看已发送邮件](#查看已发送邮件)
+    - [删除邮件](#删除邮件)
+    - [后续开发](#后续开发)
+<!-- /TOC -->
+# 命令列表及说明
 
-## 命令列表及说明
-
-### 新增邮箱
+## 新增邮箱
 新增一个邮箱
 ```
 EmailTE-Go add
@@ -19,13 +33,13 @@ EmailTE-Go add -type=1 -sp=true -email=123@163.com -pass=123456
 ```
 
 
-### 邮箱列表
+## 邮箱列表
 显示已添加的邮箱信息
 ```
 EmailTE-Go show
 ```
 
-### 删除邮箱
+## 删除邮箱
 使用分配的uuid来删除邮箱信息
 ```
 EmailTE-Go del
@@ -36,7 +50,7 @@ EmailTE-Go del
 EmailTE-Go del -uuid=9b76ea1c-d37c-44e5-a330-cf6ecb882807
 ```
 
-### 修改邮箱信息
+## 修改邮箱信息
 ```
 EmailTE-Go up
 ```
@@ -46,7 +60,7 @@ EmailTE-Go up
 EmailTE-Go up -uuid=9b76ea1c-d37c-44e5-a330-cf6ecb882807 -email=1234@163.com -pass=123456789
 ```
 
-### 使用邮箱
+## 使用邮箱
 使用邮箱来进行发送邮件操作
 ```
 EmailTE-Go use
@@ -57,13 +71,13 @@ EmailTE-Go use
 EmailTE-Go use -uuid=9b76ea1c-d37c-44e5-a330-cf6ecb882807
 ```
 
-### 查看正在使用的邮箱
+## 查看正在使用的邮箱
 ```
 EmailTE-Go using
 ```
 
-### 发送邮件
-#### 发送一封简单的邮件
+## 发送邮件
+### 发送一封简单的邮件
 只有接收人，标题和正文，接收人支持多人，以逗号分割
 ```
 EmailTE-Go send-simple
@@ -77,7 +91,7 @@ EmailTE-Go send-simple -to=xxxxx@xx.com -title=xxxx -body=xxxxxxxxg
 EmailTE-Go send-simple -to=xxxxx@xx.com,xxx@xx.com -title=xxxx -body=xxxxxxxxg
 ```
 
-#### 发送带附件的邮件
+### 发送带附件的邮件
 ```
 EmailTE-Go send-attach
 ```
@@ -106,7 +120,7 @@ EmailTE-Go send -to=xxxxx@xx.com -cc=xxxxx@xxx.com -bcc=xxxxxx@xx.com -title=xxx
 ```
 
 
-### 查看已发送邮件
+## 查看已发送邮件
 默认显示前20条
 ```
 EmailTE-Go send-list
@@ -117,7 +131,7 @@ EmailTE-Go send-list
 EmailTE-Go send-list -all=true //-all=true 全部
 ```
 
-### 删除邮件
+## 删除邮件
 ```
 EmailTE-Go send-remove
 ```
