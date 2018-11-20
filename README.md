@@ -28,9 +28,8 @@ lemail add
 
 例子
 ```
-lemail add -type=1 -sp=true -email=123@163.com -pass=123456
+lemail add -type=1 -email=123@163.com -pass=123456
 // type 邮箱类型，目前只有QQ(0),163(1),Gmail(2)
-// sp   SMTP(true) or POP3
 ```
 
 

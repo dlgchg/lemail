@@ -54,21 +54,17 @@ func main() {
 	0. qq
 	1. 163
 	2. gmail
--sp:
-	true:  smtp
-	false: pop3
 示例: 
-	lemail add -type=1 -sp=true -email=xxxx@qq.com -pass=xxxxxx`,
+	lemail add -type=1 -email=xxxx@qq.com -pass=xxxxxx`,
 			Action: func(c *cli.Context) error {
 				emailType := c.Int("type")
-				sp := c.Bool("sp")
 				email := c.String("email")
 				pass := c.String("pass")
 
 				account := new(db.Account)
 				account.Aliases = util.GetEmailName(emailType)
-				account.Server = fmt.Sprintf(util.GetServer(sp), util.GetEmailName(emailType))
-				account.SSL = util.GetSSL(sp)
+				account.Server = util.GetEmailName(emailType)
+				account.SSL = util.SMTPSSLPORT
 				account.Email = email
 				account.PassWord = pass
 				account.UUID = uuid.Must(uuid.NewV4()).String()
@@ -83,10 +79,6 @@ func main() {
 				cli.IntFlag{
 					Name:  "type,t",
 					Usage: "邮箱类型",
-				},
-				cli.BoolFlag{
-					Name:  "sp",
-					Usage: "SMTP 还是 POP3",
 				},
 				cli.StringFlag{
 					Name:  "email,e",
