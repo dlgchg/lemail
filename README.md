@@ -151,4 +151,5 @@ EmailTE-Go send-remove -id= -all=true
 
 # 交流反馈
 提交Issue: [Issues](https://github.com/UOYO/EmailTE-Go/issues)
+
 邮箱: curmido@gmail.com
