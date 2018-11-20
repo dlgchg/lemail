@@ -1,0 +1,61 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "DB+/DpKJUO7dR+MyQVchJ+yyHoI=",
+			"path": "github.com/go-gomail/gomail",
+			"revision": "81ebce5c23dfd25c6c67194b37d3dd3f338c98b1",
+			"revisionTime": "2016-04-11T21:29:32Z"
+		},
+		{
+			"checksumSHA1": "6atR+t4aMVKculfOXtFQNq3l8BQ=",
+			"path": "github.com/go-xorm/builder",
+			"revision": "03eb88feccce3e477c318ce7f6f1b386544ab20b",
+			"revisionTime": "2018-10-26T05:37:58Z"
+		},
+		{
+			"checksumSHA1": "COnttajcyxQ700jx0i2FmcE1lD4=",
+			"path": "github.com/go-xorm/core",
+			"revision": "6bc9412b1c4d00c0a5cc9dd939a245a82cc50227",
+			"revisionTime": "2018-10-08T13:23:26Z"
+		},
+		{
+			"checksumSHA1": "KcoVMxN+l1ABVEEdHjmXxxz65tY=",
+			"path": "github.com/go-xorm/xorm",
+			"revision": "b07c4067034594d1a43e314b10153ff9cfc58f86",
+			"revisionTime": "2018-11-02T16:17:11Z"
+		},
+		{
+			"checksumSHA1": "wgfqo/8SohBwvS0MpFPreBarLfs=",
+			"path": "github.com/gonuts/binary",
+			"revision": "556ab97fd809b9bdc749aaf346118dc919649076",
+			"revisionTime": "2018-06-20T15:48:02Z"
+		},
+		{
+			"checksumSHA1": "/a5Jwxjp4yLm6YcsEnxNHch6O70=",
+			"path": "github.com/mattn/go-sqlite3",
+			"revision": "eed79b86572f203cc92e92048ba06b56a8ca06e8",
+			"revisionTime": "2018-11-09T09:53:04Z"
+		},
+		{
+			"checksumSHA1": "Tutue3nEgM/87jitUcYv6ODwyNE=",
+			"path": "github.com/satori/go.uuid",
+			"revision": "b2ce2384e17bbe0c6d34077efa39dbab3e09123b",
+			"revisionTime": "2018-10-28T12:50:25Z"
+		},
+		{
+			"checksumSHA1": "KRlS8eQZGK1oYVCOkIvcMDXabxk=",
+			"path": "github.com/urfave/cli",
+			"revision": "b67dcf995b6a7b7f14fad5fcb7cc5441b05e814b",
+			"revisionTime": "2018-10-29T21:32:00Z"
+		},
+		{
+			"checksumSHA1": "6IzzHO9p32aHJhMYMwijccDUIVA=",
+			"path": "gopkg.in/alexcesaro/quotedprintable.v3",
+			"revision": "2caba252f4dc53eaf6b553000885530023f54623",
+			"revisionTime": "2015-07-16T17:19:45Z"
+		}
+	],
+	"rootPath": "my-golang-project/EmailTE-Go"
+}
