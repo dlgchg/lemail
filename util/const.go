@@ -40,7 +40,7 @@ func GetSSL(c bool) (ssl int) {
 
 const (
 	SMTPSERVER  = "smtp.%s.com"
-	SMTPSSLPORT = 25
+	SMTPSSLPORT = 465
 	POP3SERVER  = "pop.%s.com"
 	POP3SSLPORT = 995
 )
