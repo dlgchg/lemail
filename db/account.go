@@ -7,8 +7,10 @@ type Account struct {
 	UUID        string    `xorm:"unique 'uuid'"`
 	Email       string    `xorm:"unique"`
 	PassWord    string    `xorm:'password'"`
-	Server      string    `xorm:"server"`
-	SSL         int       `xorm:"ssl"`
+	SMTPServer  string    `xorm:"smtp_server"`
+	POPServer   string    `xorm:"pop_server"`
+	POPSSL      int       `xorm:"pop_ssl"`
+	SMTPSSL     int       `xorm:"smtp_ssl"`
 	CreateTime  time.Time `xorm:"created"`
 	UpdatedTime time.Time `xorm:"updated"`
 	Aliases     string

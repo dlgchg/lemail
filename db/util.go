@@ -1,15 +1,14 @@
 package db
 
 import (
-	"os"
-	"log"
 	"io/ioutil"
+	"log"
+	"os"
 )
 
 func NowUsingEmailInfo() (useAccount *Account) {
 	file, err := os.Open("use.txt")
 	defer func() {
-		log.Println("defer file close")
 		file.Close()
 	}()
 	if err != nil {
