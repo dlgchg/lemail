@@ -28,7 +28,7 @@ func main() {
 	app.Copyright = fmt.Sprintf("(c) 2018-%s iikira.", time.Now().Format("2006"))
 	app.Description = "lemail是一个命令行的邮件客户端"
 	app.Usage = "lemail是一个命令行的邮件客户端"
-	app.Version = "0.0.1"
+	app.Version = "0.0.2"
 	//----------------
 	app.Flags = []cli.Flag{
 		cli.BoolFlag{
