@@ -3,6 +3,18 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "kNtoxGIa3rApgMx/PREQeKqjKw8=",
+			"path": "github.com/axgle/mahonia",
+			"revision": "3358181d7394e26beccfae0ffde05193ef3be33a",
+			"revisionTime": "2018-02-08T00:28:26Z"
+		},
+		{
+			"checksumSHA1": "kEy5i/jCIjemJK/sytEXjV5qWl4=",
+			"path": "github.com/emersion/go-imap",
+			"revision": "9747fff06224070a57247f9fc49cd00ebf5a2d69",
+			"revisionTime": "2018-10-18T07:56:23Z"
+		},
+		{
 			"checksumSHA1": "DB+/DpKJUO7dR+MyQVchJ+yyHoI=",
 			"path": "github.com/go-gomail/gomail",
 			"revision": "81ebce5c23dfd25c6c67194b37d3dd3f338c98b1",
@@ -57,5 +69,5 @@
 			"revisionTime": "2015-07-16T17:19:45Z"
 		}
 	],
-	"rootPath": "my-golang-project/EmailTE-Go"
+	"rootPath": "my-golang-project/lemail"
 }
