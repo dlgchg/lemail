@@ -72,7 +72,7 @@ lemail use
 lemail use -uuid=9b76ea1c-d37c-44e5-a330-cf6ecb882807
 ```
 
-## 查看10封邮件
+## 查看10封邮件头
 ```
 lemail -l
 ```

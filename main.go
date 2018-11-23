@@ -33,7 +33,7 @@ func main() {
 	app.Flags = []cli.Flag{
 		cli.BoolFlag{
 			Name:        "load, l",
-			Usage:       `查看前10条邮件.`,
+			Usage:       `查看10封邮件头.`,
 			Destination: &load,
 		},
 	}
