@@ -20,15 +20,6 @@ func GetEmailName(a int) (name string) {
 	return
 }
 
-func GetServer(b bool) (server string) {
-	if b { //smtp
-		server = SMTPSERVER
-	} else { //pop3
-		server = POP3SERVER
-	}
-	return
-}
-
 func GetSSL(c bool) (ssl int) {
 	if c { //smtp
 		ssl = SMTPSSLPORT

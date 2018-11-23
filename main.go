@@ -7,10 +7,12 @@ import (
 	"io/ioutil"
 	"my-golang-project/lemail/db"
 	"my-golang-project/lemail/email"
+	"my-golang-project/lemail/pop3"
 	"my-golang-project/lemail/util"
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -31,16 +33,65 @@ func main() {
 	app.Flags = []cli.Flag{
 		cli.BoolFlag{
 			Name:        "load, l",
-			Usage:       `查看是否有新邮件，待开发.`,
+			Usage:       `查看前10条邮件.`,
 			Destination: &load,
 		},
 	}
 	app.Action = func(c *cli.Context) {
+
 		if c.NArg() != 0 {
 			fmt.Printf("没有发现命令: %s\n运行命令 %s help 获取帮助\n", c.Args().Get(0), app.Name)
 			return
 		}
-		fmt.Println("Load......")
+
+		account := db.NowUsingEmailInfo()
+		if account == nil {
+			return
+		}
+
+		fmt.Print("Load......")
+
+		address := fmt.Sprintf("%s:%d", account.POPServer, util.POP3SSLPORT)
+		conn, err := pop3.Dial(address, true)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		if err := conn.Auth(account.Email, account.PassWord); err != nil {
+			fmt.Println("请检查你的邮箱信息或者是网络异常!")
+			return
+		}
+		list, err := conn.LISTAll()
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		if len(list) > 0 && len(list) > 10 {
+			list = list[:10]
+			mutex := new(sync.RWMutex)
+			for _, v := range list {
+				mutex.Lock()
+				address := fmt.Sprintf("%s:%d", account.POPServer, util.POP3SSLPORT)
+				conn, err := pop3.Dial(address, true)
+				if err != nil {
+					fmt.Println(err)
+				}
+
+				if err := conn.Auth(account.Email, account.PassWord); err != nil {
+					return
+				}
+				messageHeader := conn.RETRS(v)
+				fmt.Printf("\nSubject: %s\nFrom: %s\nTo: %s\nCc: %s\nBcc: %s\nDate: %s\n",
+					messageHeader.Subject, messageHeader.From, messageHeader.To,
+					messageHeader.Cc, messageHeader.Bcc, messageHeader.Date)
+				conn.Quit()
+				mutex.Unlock()
+			}
+			return
+		} else {
+			fmt.Println("网络异常!")
+		}
+		return
 	}
 	//----------------
 	app.Commands = []cli.Command{
@@ -63,8 +114,10 @@ func main() {
 
 				account := new(db.Account)
 				account.Aliases = util.GetEmailName(emailType)
-				account.Server = util.GetEmailName(emailType)
-				account.SSL = util.SMTPSSLPORT
+				account.SMTPServer = fmt.Sprintf(util.SMTPSERVER, util.GetEmailName(emailType))
+				account.SMTPSSL = util.SMTPSSLPORT
+				account.POPServer = fmt.Sprintf(util.POP3SERVER, util.GetEmailName(emailType))
+				account.POPSSL = util.POP3SSLPORT
 				account.Email = email
 				account.PassWord = pass
 				account.UUID = uuid.Must(uuid.NewV4()).String()
