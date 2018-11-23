@@ -10,7 +10,7 @@ func SendEmail(toEmail []string, ccEmail []string, bccEmail []string,
 	account := db.NowUsingEmailInfo()
 	m := gomail.NewMessage()
 	m.SetHeader("From", account.Email) // your
-	m.SetHeader("To", toEmail...) //he
+	m.SetHeader("To", toEmail...)      //he
 	if len(ccEmail) > 0 {
 		m.SetHeader("Cc", ccEmail...)
 	}
@@ -22,7 +22,7 @@ func SendEmail(toEmail []string, ccEmail []string, bccEmail []string,
 	if len(attach) > 0 {
 		m.Attach(attach)
 	}
-	dialer := gomail.NewDialer(account.Server, account.SSL, account.Email, account.PassWord)
+	dialer := gomail.NewDialer(account.SMTPServer, account.SMTPSSL, account.Email, account.PassWord)
 	if err := dialer.DialAndSend(m); err != nil {
 		return account, err
 	}
