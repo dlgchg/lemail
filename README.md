@@ -150,12 +150,3 @@ lemail send-remove -id=1 -all=false
 //全部删除
 lemail send-remove -id= -all=true
 ```
-
-## 后续开发
-1. 添加配置文件，邮箱以配置文件添加
-2. 加载收到的邮件
-
-# 交流反馈
-提交Issue: [Issues](https://github.com/UOYO/lemail/issues)
-
-邮箱: curmido@gmail.com
